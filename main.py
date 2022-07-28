@@ -17,7 +17,7 @@ def download_img(url, path_to_save):
         file.write(response.content)
 
 
-def get_links():
+def fetch_spacex_last_launch():
     response = requests.get('https://api.spacexdata.com/v5/launches')
     for i in response.json()[:5]:
         img_url = i['links']['patch']['large']
@@ -26,4 +26,4 @@ def get_links():
 
 if __name__ == '__main__':
     # download_img('https://static.djangoproject.com/img/fundraising-heart.cd6bb84ffd33.svg', 'images')
-    get_links()
+    fetch_spacex_last_launch()
