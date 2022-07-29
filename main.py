@@ -1,5 +1,5 @@
 import os.path
-
+from dotenv import load_dotenv
 import requests
 
 
@@ -17,13 +17,23 @@ def download_img(url, path_to_save):
         file.write(response.content)
 
 
-def fetch_spacex_last_launch():
+def spacex_images():
     response = requests.get('https://api.spacexdata.com/v5/launches')
     for i in response.json()[:5]:
         img_url = i['links']['patch']['large']
-        download_img(img_url, 'img')
+        download_img(img_url, 'img_spacex')
+
+
+def nasa_img_of_day():
+    load_dotenv()
+    nasa_api_key = os.environ['NASA_API_KEY']
+    url = 'https://api.nasa.gov/planetary/apod?'
+    response = requests.get(url, params={'api_key': nasa_api_key})
+    img_url = response.json()['hdurl']
+    print(img_url)
 
 
 if __name__ == '__main__':
     # download_img('https://static.djangoproject.com/img/fundraising-heart.cd6bb84ffd33.svg', 'images')
-    fetch_spacex_last_launch()
+    # spacex_images()
+    nasa_img_of_day()
