@@ -1,8 +1,8 @@
-import datetime
-import os.path
-from dotenv import load_dotenv
-import requests
+import os
 from urllib.parse import unquote
+
+import requests
+from dotenv import load_dotenv
 
 
 def download_img(url, path_to_save):
@@ -23,23 +23,6 @@ def download_img(url, path_to_save):
         file.write(response.content)
 
 
-def spacex_images():
-    response = requests.get('https://api.spacexdata.com/v5/launches')
-    for i in response.json()[:5]:
-        img_url = i['links']['patch']['large']
-        download_img(img_url, 'spacex_images')
-
-
-def nasa_apod_images():
-    load_dotenv()
-    nasa_api_key = os.environ['NASA_API_KEY']
-    url = 'https://api.nasa.gov/planetary/apod?'
-    response = requests.get(url, params={'api_key': nasa_api_key, 'count': 10})
-    img_urls = response.json()
-    for img_url in img_urls:
-        download_img(img_url['hdurl'], 'nasa_images')
-
-
 def nasa_epic_images():
     load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
@@ -51,7 +34,8 @@ def nasa_epic_images():
                                     params={'api_key': nasa_api_key})
         img_url = response_img.url
         download_img(img_url, 'nasa_images/epic')
+        return 'Done!'
 
 
 if __name__ == '__main__':
-    nasa_epic_images()
+    print(nasa_epic_images())

@@ -1,6 +1,4 @@
-import os
+import base64
 
-img_extension = '.png'
-a = img_extension.split('?')[0]
-print(img_extension)
+a = base64.encode()
 print(a)
