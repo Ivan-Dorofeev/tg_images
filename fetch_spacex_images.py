@@ -35,7 +35,7 @@ def spacex_images(id_launch):
             return "Извините, нет фото последнего запуска на сайте"
         else:
             img_url = response.json()['links']['flickr_images'][0]
-            download_img(img_url, 'spacex_images')
+            download_img(img_url, 'images')
             return 'Done!'
 
 

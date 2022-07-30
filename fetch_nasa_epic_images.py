@@ -1,3 +1,4 @@
+import datetime
 import os
 from urllib.parse import unquote
 
@@ -28,13 +29,13 @@ def nasa_epic_images():
     nasa_api_key = os.environ['NASA_API_KEY']
     url = 'https://api.nasa.gov/EPIC/api/natural'
     response_data_list = requests.get(url, params={'api_key': nasa_api_key, 'date': datetime.datetime.today()})
-    for img_data in response_data_list.json()[:5]:
+    for img_data in response_data_list.json()[:1]:
         date_and_name_img = img_data['date'].split(" ")[0].replace('-', '/') + '/png/' + img_data['image'] + '.png'
         response_img = requests.get(f'https://api.nasa.gov/EPIC/archive/natural/{date_and_name_img}',
                                     params={'api_key': nasa_api_key})
         img_url = response_img.url
-        download_img(img_url, 'nasa_images/epic')
-        return 'Done!'
+        download_img(img_url, 'images')
+    return 'Done!'
 
 
 if __name__ == '__main__':
