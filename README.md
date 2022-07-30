@@ -39,5 +39,6 @@ Automatic send images in the entered time interval from folder '/image':
 # Errors
 If no last launch image, you will see:
 
-![img.png](readme_img/img.png)
+> "Извините, нет фото последнего запуска на сайте"
+
 
