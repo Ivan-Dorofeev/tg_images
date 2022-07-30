@@ -22,19 +22,14 @@ def download_img(url, path_to_save):
 
 
 def spacex_images(id_launch):
-    if id_launch:
-        response = requests.get(f'https://api.spacexdata.com/v3/launches/{id_launch}')
-        img_url, *_ = response.json()['links']['flickr_images']
-        download_img(img_url, 'spacex_images')
-        return 'Done!'
+    version = 'v5' if id_launch == "latest" else'v3'
+    response = requests.get(f'https://api.spacexdata.com/{version}/launches/{id_launch}')
+    if 'flickr_images' not in response.json()['links'].keys():
+        return "Извините, нет фото"
     else:
-        response = requests.get('https://api.spacexdata.com/v5/launches/latest')
-        if not hasattr(response.json()['links'], 'flickr_images'):
-            return "Извините, нет фото последнего запуска на сайте"
-        else:
-            img_url, *_ = response.json()['links']['flickr_images']
-            download_img(img_url, 'images')
-            return 'Done!'
+        img_url, *_ = response.json()['links']['flickr_images']
+        download_img(img_url, 'images')
+        return 'Done!'
 
 
 if __name__ == '__main__':
@@ -43,6 +38,7 @@ if __name__ == '__main__':
     )
     parser.add_argument(
         '-id', '--id_launch',
+        default='latest',
         help='ID запуска'
     )
     args = parser.parse_args()
