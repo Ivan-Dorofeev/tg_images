@@ -9,6 +9,19 @@ First of all, install packages from **_requirements.txt_**:
 
 ```python pip -m install -r requirements.txt```
 
+Then you need to create file ".env" and add two variables:
+>TG_BOT_TOKEN=[....your telegram token...]
+>
+>SKY_iIMAGES_CHANNEL_CHAT_ID=[....chat_id....]
+
+Script take values of this variables and use:
+
+>tg_token = os.environ['TG_BOT_TOKEN']
+> 
+>chat_id = os.environ['SKY_iIMAGES_CHANNEL_CHAT_ID']
+
+
+
 # Run
 Download images from SpaceX (by id launch):
 
