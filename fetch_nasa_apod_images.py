@@ -1,6 +1,4 @@
 import os
-from urllib.parse import unquote
-
 import requests
 from dotenv import load_dotenv
 
@@ -14,9 +12,8 @@ def fetch_nasa_apod_images():
     img_urls = response.json()
     for img_url in img_urls:
         download_img(img_url['hdurl'], 'images')
-    return 'Done!'
 
 
 if __name__ == '__main__':
     load_dotenv()
-    print(fetch_nasa_apod_images())
+    fetch_nasa_apod_images()

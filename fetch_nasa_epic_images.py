@@ -1,7 +1,5 @@
 import datetime
 import os
-from urllib.parse import unquote
-
 import requests
 from dotenv import load_dotenv
 
@@ -19,9 +17,8 @@ def fetch_nasa_epic_images():
                                     params={'api_key': nasa_api_key})
         img_url = response_img.url
         download_img(img_url, 'images')
-    return 'Done!'
 
 
 if __name__ == '__main__':
     load_dotenv()
-    print(fetch_nasa_epic_images())
+    fetch_nasa_epic_images()

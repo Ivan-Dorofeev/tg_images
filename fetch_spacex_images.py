@@ -1,19 +1,17 @@
 import argparse
-import os
-from urllib.parse import unquote
-
 import requests
+
+from process_img import download_img
 
 
 def spacex_images(id_launch):
-    version = 'v5' if id_launch == "latest" else'v3'
+    version = 'v5' if id_launch == "latest" else 'v3'
     response = requests.get(f'https://api.spacexdata.com/{version}/launches/{id_launch}')
     if 'flickr_images' not in response.json()['links'].keys():
         return "Извините, нет фото"
     else:
         img_url, *_ = response.json()['links']['flickr_images']
         download_img(img_url, 'images')
-        return 'Done!'
 
 
 if __name__ == '__main__':
@@ -26,4 +24,4 @@ if __name__ == '__main__':
         help='ID запуска'
     )
     args = parser.parse_args()
-    print(spacex_images(args.id_launch))
+    spacex_images(args.id_launch)
