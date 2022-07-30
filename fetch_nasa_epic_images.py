@@ -10,8 +10,8 @@ def download_img(url, path_to_save):
     if not os.path.exists(path_to_save):
         os.makedirs(path_to_save)
 
-    img_extension = os.path.splitext(url)[1].split('?')[0]
-    img_name = os.path.split(url)[1].split('.')[0]
+    img_extension, *_ = os.path.splitext(url)[1].split('?')
+    img_name, *_ = os.path.split(url)[1].split('.')
     unquote_img_name = unquote(img_name)
     full_img_name = unquote_img_name + img_extension
 
@@ -22,7 +22,6 @@ def download_img(url, path_to_save):
 
     with open(filename, 'wb') as file:
         file.write(response.content)
-
 
 def fetch_nasa_epic_images():
     nasa_api_key = os.environ['NASA_API_KEY']

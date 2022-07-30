@@ -9,8 +9,8 @@ def download_img(url, path_to_save):
     if not os.path.exists(path_to_save):
         os.makedirs(path_to_save)
 
-    img_extension = os.path.splitext(url)[1].split('?')[0]
-    img_name = os.path.split(url)[1].split('.')[0]
+    img_extension, *_ = os.path.splitext(url)[1].split('?')
+    img_name, *_ = os.path.split(url)[1].split('.')
     unquote_img_name = unquote(img_name)
     full_img_name = unquote_img_name + img_extension
 
@@ -26,7 +26,7 @@ def download_img(url, path_to_save):
 def spacex_images(id_launch):
     if id_launch:
         response = requests.get(f'https://api.spacexdata.com/v3/launches/{id_launch}')
-        img_url = response.json()['links']['flickr_images'][0]
+        img_url, *_ = response.json()['links']['flickr_images']
         download_img(img_url, 'spacex_images')
         return 'Done!'
     else:
@@ -34,7 +34,7 @@ def spacex_images(id_launch):
         if not hasattr(response.json()['links'], 'flickr_images'):
             return "Извините, нет фото последнего запуска на сайте"
         else:
-            img_url = response.json()['links']['flickr_images'][0]
+            img_url, *_ = response.json()['links']['flickr_images']
             download_img(img_url, 'images')
             return 'Done!'
 
