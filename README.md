@@ -1,8 +1,8 @@
 # tg_images
-Get images from NASA, SpaceX and send to telegram channel
+Get images from NASA, SpaceX and send to telegram channel.
 
 # Information
-All images downloads to folder "/image"
+All images downloads to folder "/image".
 
 # Install
 First of all, install packages from **_requirements.txt_**:
@@ -31,7 +31,7 @@ Download 5 APOD images from NASA:
 ```python fetch_nasa_apod_images.py```
 
 
-Automatic send images in the entered time interval from folder '/image'':
+Automatic send images in the entered time interval from folder '/image':
 
 ```python bot.py 4```
 > 4 - time interval (hours)
