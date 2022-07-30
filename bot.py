@@ -9,7 +9,8 @@ from telegram import InputMediaDocument
 
 load_dotenv()
 
-if __name__ == '__main__':
+
+def main():
     parser = argparse.ArgumentParser(
         description='Отправляет картинки из папки /image в телеграмм канал '
     )
@@ -30,7 +31,12 @@ if __name__ == '__main__':
         if not files_list:
             for dirpath, dirnames, filenames in os.walk(os.path.join(os.getcwd(), 'images')):
                 files_list = filenames
-        send_img = bot.send_media_group(chat_id=chat_id,
-                                        media=[InputMediaDocument(media=open(f'images/{files_list}', 'rb'))])
+        for file in files_list:
+            bot.send_media_group(chat_id=chat_id,
+                                 media=[InputMediaDocument(media=open(f'images/{file}', 'rb'))])
         time.sleep(60 * 60 * args.hours)
         random.shuffle(files_list)
+
+
+if __name__ == '__main__':
+    main()
