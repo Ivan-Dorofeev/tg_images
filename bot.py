@@ -24,16 +24,16 @@ def main():
 
     bot = telegram.Bot(token=tg_token)
 
-    files_list = []
+    files = []
     while True:
-        if not files_list:
+        if not files:
             for dirpath, dirnames, filenames in os.walk(os.path.join(os.getcwd(), 'images')):
-                files_list = filenames
-        for file in files_list:
+                files = filenames
+        for file in files:
             bot.send_media_group(chat_id=chat_id,
                                  media=[InputMediaDocument(media=open(f'images/{file}', 'rb'))])
         time.sleep(60 * 60 * args.hours)
-        random.shuffle(files_list)
+        random.shuffle(files)
 
 
 if __name__ == '__main__':
