@@ -25,7 +25,6 @@ def download_img(url, path_to_save):
 
 
 def nasa_epic_images():
-    load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
     url = 'https://api.nasa.gov/EPIC/api/natural'
     response_data_list = requests.get(url, params={'api_key': nasa_api_key, 'date': datetime.datetime.today()})
@@ -39,4 +38,5 @@ def nasa_epic_images():
 
 
 if __name__ == '__main__':
+    load_dotenv()
     print(nasa_epic_images())

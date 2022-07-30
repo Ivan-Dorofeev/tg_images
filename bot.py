@@ -7,8 +7,6 @@ import telegram
 from dotenv import load_dotenv
 from telegram import InputMediaDocument
 
-load_dotenv()
-
 
 def main():
     parser = argparse.ArgumentParser(
@@ -39,4 +37,5 @@ def main():
 
 
 if __name__ == '__main__':
+    load_dotenv()
     main()
