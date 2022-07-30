@@ -15,17 +15,21 @@ Download images from SpaceX (by id launch):
 ```python fetch_spacex_images.py 67```
 > 67 - id launch (example)
 
+
 Download images from SpaceX (last launch):
 
 ```python fetch_spacex_images.py```
+
 
 Download 5 EPIC images from NASA:
 
 ```python fetch_nasa_epic_images.py```
 
+
 Download 5 APOD images from NASA:
 
 ```python fetch_nasa_apod_images.py```
+
 
 Automatic send images in the entered time interval from folder '/image'':
 
