@@ -23,7 +23,7 @@ def download_img(url, path_to_save):
         file.write(response.content)
 
 
-def nasa_apod_images():
+def fetch_nasa_apod_images():
     nasa_api_key = os.environ['NASA_API_KEY']
     url = 'https://api.nasa.gov/planetary/apod?'
     response = requests.get(url, params={'api_key': nasa_api_key, 'count': 5})
@@ -35,4 +35,4 @@ def nasa_apod_images():
 
 if __name__ == '__main__':
     load_dotenv()
-    print(nasa_apod_images())
+    print(fetch_nasa_apod_images())
