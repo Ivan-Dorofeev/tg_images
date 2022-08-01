@@ -6,6 +6,7 @@ from process_img import download_img
 
 
 def fetch_nasa_apod_images():
+    load_dotenv()
     nasa_api_key = os.environ['NASA_API_KEY']
     url = 'https://api.nasa.gov/planetary/apod?'
     response = requests.get(url, params={'api_key': nasa_api_key, 'count': 5})
@@ -15,5 +16,4 @@ def fetch_nasa_apod_images():
 
 
 if __name__ == '__main__':
-    load_dotenv()
     fetch_nasa_apod_images()

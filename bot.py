@@ -9,6 +9,7 @@ from telegram import InputMediaDocument
 
 
 def main():
+    load_dotenv()
     parser = argparse.ArgumentParser(
         description='Отправляет картинки из папки /image в телеграмм канал '
     )
@@ -37,5 +38,4 @@ def main():
 
 
 if __name__ == '__main__':
-    load_dotenv()
     main()
