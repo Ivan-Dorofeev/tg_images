@@ -9,6 +9,8 @@ from telegram import InputMediaDocument
 
 
 def main():
+    images_path = os.path.join(os.getcwd(), 'images')
+
     load_dotenv()
     parser = argparse.ArgumentParser(
         description='Отправляет картинки из папки /image в телеграмм канал '
@@ -32,7 +34,7 @@ def main():
                 files = filenames
         for file in files:
             bot.send_media_group(chat_id=chat_id,
-                                 media=[InputMediaDocument(media=open(f'images/{file}', 'rb'))])
+                                 media=[InputMediaDocument(media=open(f'{images_path}/{file}', 'rb'))])
         time.sleep(60 * 60 * args.hours)
         random.shuffle(files)
 
