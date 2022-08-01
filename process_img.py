@@ -11,10 +11,10 @@ def download_img(url, path_to_save):
     *_, file_from_url = urlparse(url).path.split('/')
     img_name, img_extension = file_from_url.split('.')
     unquote_img_name = unquote(img_name)
-    filename = os.path.join(path_to_save, f'{unquote_img_name}.{img_extension}')
+    filepath = os.path.join(path_to_save, f'{unquote_img_name}.{img_extension}')
 
     response = requests.get(url)
     response.raise_for_status()
 
-    with open(filename, 'wb') as file:
+    with open(filepath, 'wb') as file:
         file.write(response.content)
