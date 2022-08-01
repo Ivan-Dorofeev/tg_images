@@ -21,7 +21,7 @@ def main():
     args = parser.parse_args()
 
     tg_token = os.environ['TG_BOT_TOKEN']
-    chat_id = os.environ['SKY_iIMAGES_CHANNEL_CHAT_ID']
+    chat_id = os.environ['TG_CHANNEL_CHAT_ID']
 
     bot = telegram.Bot(token=tg_token)
 
