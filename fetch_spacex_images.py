@@ -10,9 +10,8 @@ def spacex_images(id_launch):
     response.raise_for_status()
     if 'flickr_images' not in response.json()['links'].keys():
         return "Извините, нет фото"
-    else:
-        img_url, *_ = response.json()['links']['flickr_images']
-        download_img(img_url, 'images')
+    img_url, *_ = response.json()['links']['flickr_images']
+    download_img(img_url, 'images')
 
 
 if __name__ == '__main__':
