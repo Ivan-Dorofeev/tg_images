@@ -7,6 +7,7 @@ from process_img import download_img
 def spacex_images(id_launch):
     version = 'v5' if id_launch == "latest" else 'v3'
     response = requests.get(f'https://api.spacexdata.com/{version}/launches/{id_launch}')
+    response.raise_for_status()
     if 'flickr_images' not in response.json()['links'].keys():
         return "Извините, нет фото"
     else:
