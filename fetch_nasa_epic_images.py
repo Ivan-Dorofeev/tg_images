@@ -15,10 +15,10 @@ def fetch_nasa_epic_images():
     for image in response_images.json()[:5]:
         img_date = image['date'].split(" ")[0].replace('-', '/')
         img_name = '/png/{}.png'.format(image['image'])
-        response_img = requests.get(f'https://api.nasa.gov/EPIC/archive/natural/{img_date}{img_name}',
+        img_response = requests.get(f'https://api.nasa.gov/EPIC/archive/natural/{img_date}{img_name}',
                                     params={'api_key': nasa_api_key})
-        response_img.raise_for_status()
-        img_url = response_img.url
+        img_response.raise_for_status()
+        img_url = img_response.url
         download_img(img_url, 'images')
 
 
