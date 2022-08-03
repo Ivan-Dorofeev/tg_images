@@ -33,8 +33,9 @@ def main():
             for dirpath, dirnames, filenames in os.walk(os.path.join(os.getcwd(), 'images')):
                 files = filenames
         for file in files:
+            file_path = os.path.join(images_path, file)
             bot.send_media_group(chat_id=chat_id,
-                                 media=[InputMediaDocument(media=open(f'{images_path}/{file}', 'rb'))])
+                                 media=[InputMediaDocument(media=open(file_path, 'rb'))])
         time.sleep(60 * 60 * args.hours)
         random.shuffle(files)
 
